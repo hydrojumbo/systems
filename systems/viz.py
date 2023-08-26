@@ -9,19 +9,17 @@ from . import parse
 from .errors import ParseException
 
 
-def as_dot(model, rankdir="LR"):
+def as_dot(model, rankdir="TB"):
     mapping = {s.name: str(i) for i, s in enumerate(model.stocks)}    
     dot = Digraph(comment=model.name)
     dot.attr(rankdir=rankdir)
-    
     for stock in model.stocks:
         dot.node(mapping[stock.name], stock.name)
 
     for flow in model.flows:
         source_id = mapping[flow.source.name]
         destination_id = mapping[flow.destination.name]
-
-        dot.edge(source_id, destination_id)
+        dot.edge(source_id, destination_id, label=f'{flow.rate}')
 
     return dot
 
