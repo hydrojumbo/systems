@@ -9,10 +9,11 @@ from . import parse
 from .errors import ParseException
 
 
-def as_dot(model, rankdir="TB"):
+def as_dot(model, rankdir="TB", label=""):
     mapping = {s.name: str(i) for i, s in enumerate(model.stocks)}    
     dot = Digraph(comment=model.name)
     dot.attr(rankdir=rankdir)
+    dot.attr(label=label)
     for stock in model.stocks:
         dot.node(mapping[stock.name], stock.name)
 
