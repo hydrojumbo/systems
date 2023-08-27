@@ -107,9 +107,9 @@ class Formula:
     def __str__(self):
         "Human readable representation of a Formula."
         if type(self.lexed) in (float, int):
-            return "F(%s)" % str(self.lexed)
+            return "%s" % str(self.lexed)
         else:
-            return "F(%s)" % systems.lexer.readable(self.lexed)
+            return "%s" % systems.lexer.readable(self.lexed)
 
 
 class Stock(object):
